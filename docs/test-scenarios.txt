@@ -1,0 +1,527 @@
+# Test Scenarios for Home Credit LAP Voice Agent
+
+Use these scenarios to thoroughly test the agent before production deployment.
+
+## Scenario 1: Perfect Happy Path
+
+**Objective:** Test standard qualification flow with all criteria met
+
+**Customer Responses:**
+1. Agent: Introduction
+   - Customer: "Yes, please go ahead"
+
+2. Agent: Property type?
+   - Customer: "It's a residential property"
+
+3. Agent: Ownership?
+   - Customer: "It's in my name only"
+
+4. Agent: Original documents?
+   - Customer: "Yes, I have all the original papers"
+
+5. Agent: Loan amount needed?
+   - Customer: "I need 50 lakhs"
+
+6. Agent: Occupation?
+   - Customer: "I'm salaried, working in an IT company"
+
+7. Agent: Income receipt method?
+   - Customer: "My salary comes through bank transfer"
+
+8. Agent: Property market value?
+   - Customer: "The property is worth around 1.2 crore"
+
+9. Agent: Preferred tenure?
+   - Customer: "I'd like a 10-year loan"
+
+**Expected Outcome:**
+- All information collected ✅
+- Agent confirms all details ✅
+- Preliminary qualification confirmed ✅
+- Handoff to senior expert scheduled ✅
+
+---
+
+## Scenario 2: Amount Exceeds Limit (Customer Agrees to Max)
+
+**Customer Responses:**
+1. Initial questions answered normally...
+
+2. Agent: Loan amount needed?
+   - Customer: "I need 1 crore"
+
+3. Agent: Explains ₹75 lakh limit, asks if customer wants to proceed with ₹75 lakh
+   - Customer: "Okay, 75 lakhs should work for now"
+
+4. Continue with remaining questions...
+
+**Expected Outcome:**
+- Agent clearly explains limit ✅
+- Customer accepts ₹75 lakh ✅
+- Continues qualification with adjusted amount ✅
+- Notes original request in additional info ✅
+
+---
+
+## Scenario 3: Amount Exceeds Limit (Customer Declines)
+
+**Customer Responses:**
+1. Initial questions answered normally...
+
+2. Agent: Loan amount needed?
+   - Customer: "I need 90 lakhs minimum"
+
+3. Agent: Explains ₹75 lakh limit
+   - Customer: "No, I really need 90 lakhs. 75 won't work for me"
+
+**Expected Outcome:**
+- Agent acknowledges customer's need ✅
+- Politely explains limitation ✅
+- Offers senior expert consultation for higher amounts ✅
+- Schedules callback for alternative options ✅
+
+---
+
+## Scenario 4: Missing Original Documents
+
+**Customer Responses:**
+1. Initial questions answered normally...
+
+2. Agent: Do you have original documents?
+   - Customer: "Actually, I only have photocopies right now"
+
+**Expected Outcome:**
+- Agent politely disqualifies ✅
+- Explains original documents are required ✅
+- Offers callback once documents are available ✅
+- Sets clear expectation about requirement ✅
+
+---
+
+## Scenario 5: Busy Customer - Requests Callback
+
+**Customer Responses:**
+1. Agent: Introduction
+   - Customer: "Yes, but I'm actually in a meeting right now"
+
+2. Agent: Offers quick completion or callback
+   - Customer: "Can you call me back tomorrow afternoon?"
+
+3. Agent: Confirms callback time
+   - Customer: "Yes, around 3 PM would be good. Use this number"
+
+**Expected Outcome:**
+- Agent recognizes customer is busy ✅
+- Offers flexible options ✅
+- Confirms callback details (time, number) ✅
+- Sets proper expectations ✅
+
+---
+
+## Scenario 6: Busy Customer - Agrees to Continue
+
+**Customer Responses:**
+1. Agent: First 3 questions answered
+
+2. Customer: "Actually, I'm running late for something. Is this going to take long?"
+
+3. Agent: Offers 3 minutes or callback
+   - Customer: "Okay, 3 minutes is fine. Let's finish"
+
+4. Remaining questions answered quickly
+
+**Expected Outcome:**
+- Agent acknowledges time constraint ✅
+- Gives clear time estimate ✅
+- Efficiently completes remaining questions ✅
+- Respects customer's urgency ✅
+
+---
+
+## Scenario 7: Existing Loan - Balance Transfer (Within Limit)
+
+**Customer Responses:**
+1. Initial questions answered...
+
+2. Customer mentions: "I already have a loan of 40 lakhs on this property. Can I transfer it?"
+
+3. Agent: Clarifies and asks total amount needed
+   - Customer: "I want to pay off the 40 lakhs and get 20 lakhs more, so 60 lakhs total"
+
+4. Agent: Explains this is within ₹75 lakh limit
+   - Customer: "Perfect, let's proceed"
+
+**Expected Outcome:**
+- Agent understands balance transfer request ✅
+- Correctly calculates: ₹40L payoff + ₹20L additional ✅
+- Confirms total is within limit ✅
+- Notes existing loan details ✅
+- Continues qualification ✅
+
+---
+
+## Scenario 8: Existing Loan - Balance Transfer (Exceeds Limit)
+
+**Customer Responses:**
+1. Initial questions answered...
+
+2. Customer: "I have 60 lakhs outstanding. I want to transfer that and get 30 lakhs more"
+
+3. Agent: Calculates 60 + 30 = 90 lakhs, explains ₹75 lakh limit
+   - Customer: "Can I get 75 total then? So 60 payoff plus 15 new?"
+
+4. Agent: Confirms calculation
+   - Customer: "Yes, let's do that"
+
+**Expected Outcome:**
+- Agent correctly calculates total requirement ✅
+- Identifies limit exceeded ✅
+- Explains maximum available (₹60L payoff + ₹15L new) ✅
+- Customer confirms adjusted amount ✅
+- Continues with ₹75 lakh application ✅
+
+---
+
+## Scenario 9: Unclear Answers - Property Ownership
+
+**Customer Responses:**
+1. Agent: Property ownership?
+   - Customer: "Well, it's mine... but my wife's name might be on it too, I'm not sure"
+
+2. Agent: Clarifies - self-owned or co-owned?
+   - Customer: "Oh yes, both our names are on it. Co-owned"
+
+**Expected Outcome:**
+- Agent doesn't assume ✅
+- Asks clarifying question ✅
+- Offers clear options ✅
+- Gets definitive answer ✅
+
+---
+
+## Scenario 10: Unclear Answers - Occupation
+
+**Customer Responses:**
+1. Agent: Occupation?
+   - Customer: "I do some work"
+
+2. Agent: Clarifies - salaried, self-employed, or business owner?
+   - Customer: "I have my own consultancy"
+
+3. Agent: Confirms
+   - Customer: "Yes, I'm self-employed"
+
+**Expected Outcome:**
+- Agent recognizes vague answer ✅
+- Provides clear categories ✅
+- Customer selects appropriate option ✅
+- Agent confirms understanding ✅
+
+---
+
+## Scenario 11: Out-of-Order Information
+
+**Customer Responses:**
+1. Agent: Introduction
+   - Customer: "Hi yes, I need 60 lakhs for 7 years on my residential flat worth 1.5 crore"
+
+2. Agent: Acknowledges information provided
+   - Customer: Confirms
+
+3. Agent: Asks remaining questions (ownership, documents, occupation, income method)
+
+**Expected Outcome:**
+- Agent accepts out-of-order information ✅
+- Confirms what was provided ✅
+- Asks for missing details only ✅
+- Completes all 8 data points ✅
+
+---
+
+## Scenario 12: Interruption During Agent Speaking
+
+**Customer Responses:**
+1. Agent: "Hello, this is [name] from Home Credit India. I understand—"
+   - Customer: [Interrupts] "Yes yes, I know about the loan. I need 45 lakhs"
+
+2. Agent: Acknowledges and adapts
+   - Customer: Continues conversation
+
+**Expected Outcome:**
+- Agent handles interruption gracefully ✅
+- Doesn't restart from beginning ✅
+- Notes amount provided ✅
+- Continues with remaining questions ✅
+
+---
+
+## Scenario 13: Customer Asks About Interest Rate
+
+**Customer Responses:**
+1. After agent explains preliminary qualification...
+   - Customer: "What will be my interest rate?"
+
+2. Agent: Explains rate depends on various factors
+   - Customer: "Can you give me a rough idea?"
+
+3. Agent: Reiterates senior expert will discuss specific rates
+
+**Expected Outcome:**
+- Agent doesn't quote specific rate ✅
+- Explains factors that determine rate ✅
+- Redirects to senior expert ✅
+- Doesn't make promises ✅
+
+---
+
+## Scenario 14: Customer Asks About Processing Time
+
+**Customer Responses:**
+1. During conversation...
+   - Customer: "How long will this take? When will I get the money?"
+
+2. Agent: Explains typical timeline, subject to verification
+
+**Expected Outcome:**
+- Agent provides general timeline ✅
+- Doesn't guarantee specific date ✅
+- Mentions verification requirements ✅
+- Sets realistic expectations ✅
+
+---
+
+## Scenario 15: Customer Asks for Guaranteed Approval
+
+**Customer Responses:**
+1. After preliminary qualification...
+   - Customer: "So I'm definitely getting the loan, right?"
+
+2. Agent: Clarifies preliminary vs. final approval
+   - Customer: "But what are my chances?"
+
+3. Agent: Explains documentation verification and credit assessment needed
+
+**Expected Outcome:**
+- Agent never promises approval ✅
+- Clearly distinguishes preliminary from final ✅
+- Explains remaining steps ✅
+- Manages expectations appropriately ✅
+
+---
+
+## Scenario 16: Commercial Property
+
+**Customer Responses:**
+1. Agent: Property type?
+   - Customer: "It's a commercial shop in a mall"
+
+2. Continue with remaining questions normally...
+
+**Expected Outcome:**
+- Agent accepts commercial property ✅
+- Notes property type correctly ✅
+- Continues normal qualification flow ✅
+
+---
+
+## Scenario 17: Mixed Income Sources
+
+**Customer Responses:**
+1. Agent: Income receipt method?
+   - Customer: "Some comes in the bank, sometimes I get cash payments too"
+
+2. Agent: Confirms
+   - Customer: "Yes, it's mixed"
+
+**Expected Outcome:**
+- Agent accepts mixed income ✅
+- Notes accurately for verification ✅
+- Doesn't disqualify ✅
+
+---
+
+## Scenario 18: Uncertain About Property Value
+
+**Customer Responses:**
+1. Agent: Property market value?
+   - Customer: "I'm not really sure... maybe 80 lakhs?"
+
+2. Agent: Confirms approximate value is fine
+   - Customer: "Okay yes, around 80 lakhs then"
+
+**Expected Outcome:**
+- Agent accepts approximate value ✅
+- Doesn't require exact amount ✅
+- Notes as estimate ✅
+
+---
+
+## Scenario 19: Uncertain About Tenure
+
+**Customer Responses:**
+1. Agent: Preferred tenure?
+   - Customer: "I don't know... what do most people take?"
+
+2. Agent: Provides common options (5-10 years)
+   - Customer: "Okay, let's say 7 years"
+
+**Expected Outcome:**
+- Agent helps customer decide ✅
+- Provides typical options ✅
+- Accepts customer's choice ✅
+
+---
+
+## Scenario 20: Multiple Clarifications Needed
+
+**Customer Responses:**
+1. Agent: Property type?
+   - Customer: "I have a house"
+
+2. Agent: Residential or commercial?
+   - Customer: "A house"
+
+3. Agent: For living in, so residential?
+   - Customer: "Yes"
+
+4. Agent: Ownership?
+   - Customer: "My property"
+
+5. Agent: Only in your name, or co-owned?
+   - Customer: "Just mine"
+
+**Expected Outcome:**
+- Agent remains patient ✅
+- Asks clarifying questions multiple times if needed ✅
+- Gets definitive answers ✅
+- Doesn't show frustration ✅
+
+---
+
+## Scenario 21: System/Audio Issues
+
+**Customer Responses:**
+1. Agent: [Unclear audio]
+   - Customer: "Sorry, I can't hear you properly"
+
+2. Agent: Acknowledges and repeats
+   - Customer: "Yes, better now"
+
+**Expected Outcome:**
+- Agent recognizes audio issue ✅
+- Repeats information clearly ✅
+- Confirms customer can hear ✅
+
+---
+
+## Scenario 22: Customer Provides Conflicting Information
+
+**Customer Responses:**
+1. Agent: Loan amount?
+   - Customer: "50 lakhs"
+
+2. Later in conversation...
+   - Customer: "So I'll get 60 lakhs, right?"
+
+3. Agent: Clarifies discrepancy
+   - Customer: "Oh sorry, yes 50 lakhs"
+
+**Expected Outcome:**
+- Agent catches conflicting information ✅
+- Asks for clarification ✅
+- Confirms correct amount ✅
+- Updates internally ✅
+
+---
+
+## Scenario 23: Agricultural Land (Ineligible)
+
+**Customer Responses:**
+1. Agent: Property type?
+   - Customer: "It's agricultural land"
+
+**Expected Outcome:**
+- Agent politely disqualifies ✅
+- Explains agricultural land not eligible ✅
+- Offers senior expert consultation ✅
+
+---
+
+## Scenario 24: Validation Catches Error
+
+**Customer Responses:**
+1. All questions answered...
+
+2. Agent: Confirms all details
+   - Lists: Residential, self-owned, has documents, 50 lakhs, salaried, bank transfer, 1.2 crore, 10 years
+
+3. Customer: "Wait, I said co-owned, not just my name"
+
+4. Agent: Corrects information
+   - Customer: "Yes, that's right now"
+
+**Expected Outcome:**
+- Agent summarizes all collected info ✅
+- Customer catches error during validation ✅
+- Agent corrects specific detail ✅
+- Re-confirms before finalizing ✅
+
+---
+
+## Scenario 25: Want to Speak to Senior Immediately
+
+**Customer Responses:**
+1. Agent: Introduction
+   - Customer: "I want to speak to your manager directly"
+
+2. Agent: Explains need for basic details first
+   - Customer: "Okay fine, but make it quick"
+
+3. Quick qualification flow completed
+   - Customer: Satisfied
+
+**Expected Outcome:**
+- Agent acknowledges request ✅
+- Explains efficiency of current process ✅
+- Completes qualification quickly ✅
+- Ensures senior expert callback ✅
+
+---
+
+## Testing Checklist
+
+### Core Functionality
+- [ ] All 8 data points collected successfully
+- [ ] Information validated with customer
+- [ ] Preliminary qualification determined
+- [ ] Handoff to senior expert confirmed
+
+### Edge Cases
+- [ ] Amount over ₹75 lakh handled (both accept and decline)
+- [ ] Missing documents handled
+- [ ] Busy customer handled (callback scheduled)
+- [ ] Existing loan scenarios handled
+- [ ] Unclear answers clarified
+- [ ] Out-of-order information accepted
+- [ ] Interruptions handled gracefully
+
+### Compliance
+- [ ] No promises of final approval
+- [ ] No specific interest rate quotes
+- [ ] No guaranteed disbursement commitments
+- [ ] Clear preliminary nature communicated
+- [ ] Proper expectations set
+
+### User Experience
+- [ ] Professional and warm tone
+- [ ] Patient with clarifications
+- [ ] Empathetic to customer constraints
+- [ ] Clear and concise communication
+- [ ] Smooth handoff process
+
+### Technical
+- [ ] Audio quality acceptable
+- [ ] Response latency < 2 seconds
+- [ ] Handles interruptions without breaking
+- [ ] Post-call data extraction accurate
+- [ ] All fields populated correctly

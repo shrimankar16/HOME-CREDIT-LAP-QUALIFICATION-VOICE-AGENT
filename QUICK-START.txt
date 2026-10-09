@@ -1,0 +1,224 @@
+===============================================================================
+QUICK START GUIDE
+===============================================================================
+
+Get your Home Credit LAP Voice Agent up and running in 15 minutes.
+
+===============================================================================
+STEP 1: SIGN UP FOR RETELL AI (2 minutes)
+===============================================================================
+
+1. Go to https://www.retellai.com/
+2. Click "Sign Up" or "Get Started"
+3. Create your account
+4. You'll get $10 in free credits (~100 minutes of calls)
+
+===============================================================================
+STEP 2: CREATE THE AGENT (5 minutes)
+===============================================================================
+
+OPTION A: DASHBOARD (Recommended for First Time)
+-------------------------------------------------
+
+1. LOG INTO RETELL DASHBOARD
+   https://dashboard.retellai.com/
+
+2. CREATE NEW AGENT
+   - Click "Create Agent"
+   - Select "Single Prompt Agent"
+
+3. BASIC CONFIGURATION
+   - Name: Home Credit LAP Agent
+   - Language: English (en-US)
+   - Model: Claude 3.5 Sonnet
+   - Voice: Cimo (or any professional voice)
+   - First Speaker: Agent
+
+4. COPY THE PROMPT
+   - Open "config/agent-prompt.txt" from this folder
+   - Copy ALL content (Ctrl+A, Ctrl+C)
+   - Paste into the System Prompt box in Retell
+
+5. VOICE SETTINGS
+   - Speed: 1.0
+   - Temperature: 1.0
+   - Enable Backchannel: ON
+   - Add backchannel words: "yes", "okay", "I see", "understood"
+
+6. ADVANCED SETTINGS
+   - Expand "Agent Handbook" section
+   - Turn ON these options:
+     ✅ Default Personality
+     ✅ Conversational Personality
+     ✅ Natural Filler Words
+     ✅ High Empathy
+     ✅ Echo Verification
+     ✅ Speech Normalization
+     ✅ Smart Matching
+
+7. BOOSTED KEYWORDS (Optional but Recommended)
+   Add these keywords for better speech recognition:
+   - Home Credit
+   - lakh, lakhs
+   - crore, rupees
+   - residential, commercial
+
+8. SAVE DRAFT
+
+===============================================================================
+STEP 3: TEST THE AGENT (5 minutes)
+===============================================================================
+
+1. TEST CALL BUTTON
+   - Click "Test Call" in the dashboard
+   - Allow microphone access
+   - Click "Start Call"
+
+2. TRY THIS SIMPLE TEST
+
+   Agent: *Introduces and asks to proceed*
+   You: "Yes, please"
+   
+   Agent: *Asks about property type*
+   You: "Residential"
+   
+   Agent: *Asks about ownership*
+   You: "Self-owned"
+   
+   Agent: *Asks about original documents*
+   You: "Yes, I have them"
+   
+   Agent: *Asks about loan amount*
+   You: "50 lakhs"
+   
+   Agent: *Asks about occupation*
+   You: "Salaried"
+   
+   Agent: *Asks about income method*
+   You: "Bank transfer"
+   
+   Agent: *Asks about property value*
+   You: "1 crore"
+   
+   Agent: *Asks about tenure*
+   You: "10 years"
+   
+   Agent: *Confirms details and qualifies you*
+
+3. EXPECTED RESULT
+   ✅ Agent collects all information
+   ✅ Agent confirms details back to you
+   ✅ Agent says you're preliminarily qualified
+   ✅ Agent mentions handoff to senior expert
+
+===============================================================================
+STEP 4: DEPLOY TO PHONE NUMBER (3 minutes)
+===============================================================================
+
+1. PURCHASE PHONE NUMBER
+   - In dashboard, go to "Phone Numbers"
+   - Click "Buy Phone Number"
+   - Choose country (India)
+   - Select a number ($2/month)
+
+2. CONNECT AGENT TO NUMBER
+   - Go to your phone number settings
+   - Under "Inbound Agent", select your LAP agent
+   - Save
+
+3. TEST REAL CALL
+   - Call the phone number
+   - Have a conversation with the agent
+   - Verify it works as expected
+
+===============================================================================
+ALTERNATIVE: TRY THE PUBLIC DEMO
+===============================================================================
+
+Before setting up your own, test the live demo:
+
+🎙️ PUBLIC DEMO LINK:
+https://agent.retellai.com/orb/agent_1cd6d1d0c3693d8b4b8d3cdf7d?token=dfd704750d4b7c94e96e79a662ead283
+
+1. Click the link above
+2. Allow microphone access
+3. Start conversation with the agent
+4. Try different scenarios
+
+===============================================================================
+COMMON FIRST-TIME ISSUES
+===============================================================================
+
+ISSUE: Agent sounds robotic
+---------------------------
+Fix: 
+- Enable "Natural Filler Words" in Agent Handbook
+- Try a different voice (Eleven Labs voices are more expressive)
+
+ISSUE: Agent gets interrupted too easily
+----------------------------------------
+Fix:
+- Lower Interruption Sensitivity to 0.7
+
+ISSUE: Agent doesn't understand Indian terms (lakh, crore)
+-----------------------------------------------------------
+Fix:
+- Add them to Boosted Keywords
+- Set Vocab Specialization to "finance"
+
+ISSUE: Call ends abruptly
+--------------------------
+Fix:
+- Increase "End Call After Silence" to 300000ms (5 minutes)
+
+ISSUE: Agent not following the prompt exactly
+----------------------------------------------
+Fix:
+- Make sure you copied the ENTIRE prompt from config/agent-prompt.txt
+- Check for any truncation in the System Prompt field
+
+===============================================================================
+NEXT STEPS
+===============================================================================
+
+Once your basic agent is working:
+
+1. TEST EDGE CASES
+   - Use "docs/test-scenarios.txt" to test 25 different scenarios
+   - Verify handling of busy customers, amount limits, etc.
+
+2. SET UP ANALYTICS
+   - Configure Post-Call Data Extraction
+   - Copy fields from "config/retell-config.json"
+   - View structured data after each call
+
+3. ADD WEBHOOKS (Optional)
+   - Set up webhook URL for call events
+   - Integrate with your CRM
+   - Automate lead routing
+
+4. OPTIMIZE PERFORMANCE
+   - Review call recordings
+   - Refine prompt based on real conversations
+   - Adjust voice settings for naturalness
+
+===============================================================================
+NEED HELP?
+===============================================================================
+
+Full Documentation: See README.txt
+All Test Scenarios: See docs/test-scenarios.txt
+Retell Docs: https://docs.retellai.com/
+Retell Support: support@retellai.com
+
+===============================================================================
+COST ESTIMATE
+===============================================================================
+
+Retell Credits: ~7-12 cents per minute
+Phone Number: $2/month
+Free Trial: $10 credit (~100 minutes)
+
+A typical 5-minute qualification call costs approximately $0.35-0.60
+
+===============================================================================

@@ -1,0 +1,216 @@
+{
+  "agent_name": "Home Credit LAP Qualification Agent",
+  "version_description": "Professional voice agent for preliminary Loan Against Property qualification calls",
+  "language": "en-US",
+  "response_engine": {
+    "type": "retell-llm",
+    "llm_model": "claude-3-5-sonnet",
+    "system_prompt": "See agent-prompt.md for the complete system prompt"
+  },
+  "voice_id": "retell-Cimo",
+  "voice_model": "eleven_flash_v2",
+  "fallback_voice_ids": [
+    "cartesia-Cimo",
+    "minimax-Cimo"
+  ],
+  "voice_temperature": 1,
+  "voice_speed": 1,
+  "enable_dynamic_voice_speed": true,
+  "enable_dynamic_responsiveness": true,
+  "volume": 1,
+  "enable_expressive_mode": true,
+  "expressive_emotion_tags": [
+    "empathetic",
+    "emphasis"
+  ],
+  "expressive_mode_prompt": "Use [empathetic] when acknowledging customer concerns or disqualifying, and [emphasis] when confirming important details like loan amounts or disqualification criteria.",
+  "responsiveness": 1,
+  "interruption_sensitivity": 1,
+  "enable_backchannel": true,
+  "backchannel_frequency": 0.8,
+  "backchannel_words": [
+    "yes",
+    "okay",
+    "I see",
+    "understood"
+  ],
+  "reminder_trigger_ms": 15000,
+  "reminder_max_count": 1,
+  "ambient_sound": "off",
+  "boosted_keywords": [
+    "Home Credit",
+    "lakh",
+    "lakhs",
+    "crore",
+    "crores",
+    "rupees",
+    "LAP",
+    "residential",
+    "commercial",
+    "co-owned",
+    "self-owned",
+    "salaried",
+    "self-employed"
+  ],
+  "handbook_config": {
+    "default_personality": true,
+    "conversational_personality": true,
+    "natural_filler_words": true,
+    "high_empathy": true,
+    "echo_verification": true,
+    "nato_phonetic_alphabet": false,
+    "speech_normalization": true,
+    "smart_matching": true,
+    "ai_disclosure": false,
+    "scope_boundaries": true
+  },
+  "post_call_analysis_data": [
+    {
+      "type": "string",
+      "name": "customer_name",
+      "description": "The name of the customer",
+      "required": false
+    },
+    {
+      "type": "string",
+      "name": "property_type",
+      "description": "Type of property: residential or commercial",
+      "required": true,
+      "examples": [
+        "Residential",
+        "Commercial"
+      ]
+    },
+    {
+      "type": "string",
+      "name": "property_ownership",
+      "description": "Property ownership: self-owned or co-owned",
+      "required": true,
+      "examples": [
+        "Self-owned",
+        "Co-owned"
+      ]
+    },
+    {
+      "type": "boolean",
+      "name": "has_original_documents",
+      "description": "Whether customer has original property documents",
+      "required": true
+    },
+    {
+      "type": "string",
+      "name": "requested_loan_amount",
+      "description": "The loan amount customer is requesting in lakhs",
+      "required": true,
+      "examples": [
+        "50 lakhs",
+        "75 lakhs",
+        "30 lakhs"
+      ]
+    },
+    {
+      "type": "string",
+      "name": "occupation",
+      "description": "Customer's occupation type",
+      "required": true,
+      "examples": [
+        "Salaried",
+        "Self-employed",
+        "Business owner"
+      ]
+    },
+    {
+      "type": "string",
+      "name": "income_receipt_method",
+      "description": "How customer receives their income",
+      "required": true,
+      "examples": [
+        "Bank transfer",
+        "Cash",
+        "Cheque",
+        "Mixed"
+      ]
+    },
+    {
+      "type": "string",
+      "name": "property_market_value",
+      "description": "Approximate current market value of the property",
+      "required": true,
+      "examples": [
+        "1 crore",
+        "80 lakhs",
+        "1.5 crore"
+      ]
+    },
+    {
+      "type": "string",
+      "name": "preferred_tenure",
+      "description": "Preferred loan repayment tenure in years",
+      "required": true,
+      "examples": [
+        "5 years",
+        "10 years",
+        "7 years"
+      ]
+    },
+    {
+      "type": "string",
+      "name": "qualification_status",
+      "description": "Preliminary qualification outcome",
+      "required": true,
+      "examples": [
+        "Qualified - all criteria met",
+        "Disqualified - no original documents",
+        "Disqualified - amount exceeds limit",
+        "Callback requested - customer busy",
+        "Callback requested - missing information"
+      ]
+    },
+    {
+      "type": "boolean",
+      "name": "has_existing_loan",
+      "description": "Whether customer has an existing loan on the property",
+      "required": false
+    },
+    {
+      "type": "string",
+      "name": "existing_loan_amount",
+      "description": "Outstanding amount on existing loan if applicable",
+      "required": false
+    },
+    {
+      "type": "string",
+      "name": "callback_requested_time",
+      "description": "When customer requested callback if applicable",
+      "required": false
+    },
+    {
+      "type": "string",
+      "name": "disqualification_reason",
+      "description": "Specific reason for disqualification if applicable",
+      "required": false
+    },
+    {
+      "type": "string",
+      "name": "additional_notes",
+      "description": "Any additional notes or special requests from customer",
+      "required": false
+    }
+  ],
+  "post_call_analysis_model": "gpt-4.1-mini",
+  "end_call_after_silence_ms": 300000,
+  "max_call_duration_ms": 900000,
+  "stt_mode": "fast",
+  "vocab_specialization": "finance",
+  "denoising_mode": "noise-cancellation",
+  "denoising_enhancement_level": 0.7,
+  "data_storage_setting": "everything",
+  "data_storage_retention_days": 90,
+  "begin_message_delay_ms": 1500,
+  "ring_duration_ms": 40000,
+  "webhook_events": [
+    "call_started",
+    "call_ended",
+    "call_analyzed"
+  ]
+}

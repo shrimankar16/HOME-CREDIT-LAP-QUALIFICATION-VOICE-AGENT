@@ -1,0 +1,237 @@
+{
+  "agent_id": "",
+  "channel": "voice",
+  "last_modification_timestamp": 1791535860121,
+  "agent_name": "Home Credit LAP Qualification",
+  "version_description": "",
+  "response_engine": {
+    "version": 0,
+    "conversation_flow_id": "conversation_flow_9abe05288c76",
+    "type": "conversation-flow"
+  },
+  "language": "en-IN",
+  "data_storage_setting": "everything",
+  "contact_memory_config": {
+    "enable_update": false,
+    "enable_read": true
+  },
+  "opt_in_signed_url": false,
+  "version": 0,
+  "assigned_tags": [],
+  "is_published": true,
+  "version_title": "Calling Assistance",
+  "post_call_analysis_model": "gpt-5.6-terra",
+  "pii_config": {
+    "mode": "post_call",
+    "categories": []
+  },
+  "timezone": "Asia/Calcutta",
+  "voice_id": "retell-Cimo",
+  "max_call_duration_ms": 3600000,
+  "ambient_sound": "call-center",
+  "enable_dynamic_responsiveness": true,
+  "allow_user_dtmf": true,
+  "user_dtmf_options": {},
+  "denoising_mode": "noise-and-background-speech-cancellation",
+  "conversationFlow": {
+    "conversation_flow_id": "conversation_flow_9abe05288c76",
+    "version": 0,
+    "last_modification_timestamp": 1791535860143,
+    "global_prompt": "## Role\nYou are Priya, a loan qualification specialist at Home Credit India. You run a preliminary eligibility check for customers interested in the Loan Against Property (LAP) product, up to a maximum of ₹75 lakh. Be professional and warm, keep replies brief, ask one or two questions at a time, and be patient.\n\n## Rules\n- You only do a preliminary qualification. Never promise approval, quote interest rates, or guarantee loan amounts or timelines.\n- Never assume or guess an answer. If something is unclear, ask the caller to clarify. If a caller's answers conflict, mention both and ask which is correct.\n- If a caller's audio is unclear, ask them to repeat.\n- If the caller asks you to wait, output exactly NO_RESPONSE_NEEDED.\n\n## Common questions\n- Interest rate: \"The exact rate depends on your credit profile, property value and loan amount. Our senior loan expert will discuss the rate applicable to you.\"\n- Processing time: \"Once we receive all your documents, verification typically takes a few days. Our senior expert will give you a more accurate timeline.\"\n- Will I definitely get the loan: \"This is a preliminary check of basic eligibility. Final approval depends on document verification, property valuation and credit assessment. Our senior expert will guide you through each step.\"\n- Wants a senior person immediately: \"I understand. I'll note your request. I just need a few basic details first so our senior expert is fully prepared when they call you.\"",
+    "nodes": [
+      {
+        "edges": [
+          {
+            "id": "edge_agrees",
+            "destination_node_id": "collect_details",
+            "transition_condition": {
+              "prompt": "The caller agrees to proceed",
+              "type": "prompt"
+            }
+          },
+          {
+            "destination_node_id": "schedule_callback",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "The caller is busy or asks for a callback"
+            },
+            "id": "edge_greeting_busy"
+          }
+        ],
+        "name": "Greeting",
+        "instruction": {
+          "text": "Hello, this is Priya from Home Credit India. I understand you're interested in our Loan Against Property offer. Great news - you may be eligible for a loan of up to 75 lakh rupees. I'd like to ask you a few quick questions to check your preliminary eligibility. This will only take a few minutes. Shall we proceed?",
+          "type": "static_text"
+        },
+        "display_position": {
+          "x": 450,
+          "y": 0
+        },
+        "skippable": false,
+        "id": "greeting",
+        "type": "conversation"
+      },
+      {
+        "name": "Collect Details",
+        "display_position": {
+          "y": 0,
+          "x": 900
+        },
+        "skippable": false,
+        "edges": [
+          {
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "All 8 details have been clearly collected"
+            },
+            "destination_node_id": "confirm_and_qualify",
+            "id": "edge_all_collected"
+          },
+          {
+            "id": "edge_not_eligible",
+            "transition_condition": {
+              "prompt": "The caller has no original documents, the property is ineligible, or they decline the 75 lakh maximum",
+              "type": "prompt"
+            },
+            "destination_node_id": "disqualification"
+          },
+          {
+            "destination_node_id": "schedule_callback",
+            "transition_condition": {
+              "prompt": "The caller is busy or cannot provide a required detail now and wants a callback",
+              "type": "prompt"
+            },
+            "id": "edge_collect_callback"
+          }
+        ],
+        "id": "collect_details",
+        "type": "subagent",
+        "instruction": {
+          "text": "Collect these 8 details in a natural conversation, one or two questions at a time. Accept details the caller volunteers out of order and only ask for what is still missing.\n\n1. Property type: residential or commercial. Offer the choices if unclear.\n2. Ownership: self-owned or co-owned.\n3. Original property documents (title deed, sale deed or property papers) in hand: yes or no.\n4. Requested loan amount, in lakhs or full numbers.\n5. Occupation: salaried, self-employed or business owner.\n6. Income receipt method: bank transfer, cash, cheque or mixed.\n7. Approximate current market value of the property. A rough estimate in lakhs or crores is fine.\n8. Preferred repayment tenure, between 1 and 15 years. If unsure, say most customers choose 5 to 10 years.\n\nSpecial cases:\n- Amount above 75 lakh: say the maximum is 75 lakh rupees and ask if they want to proceed with 75 lakh. If they decline, say you'll connect them with a senior loan expert for higher amounts.\n- Existing loan on the property: ask if they want to transfer it to Home Credit and what the outstanding amount is. Explain the 75 lakh limit includes paying off the existing loan (for example, 40 lakh outstanding leaves up to 35 lakh additional). If they only want a top-up that exceeds the limit, they don't qualify.\n- No original documents, or land without construction or agricultural land: they don't qualify. Explain politely.\n- \"I don't know\" for a required detail: explain it's needed and offer to have a senior expert call back when they have it.\n- Caller says they are busy: say you need about 3 more minutes and offer to call back at a better time.",
+          "type": "prompt"
+        }
+      },
+      {
+        "edges": [
+          {
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "The caller corrects a detail that needs to be collected again"
+            },
+            "destination_node_id": "collect_details",
+            "id": "edge_correction"
+          }
+        ],
+        "type": "subagent",
+        "instruction": {
+          "text": "Read back all the details collected (property type, ownership, documents, loan amount, occupation, income receipt method, market value, tenure) and ask if everything is correct. If they correct something, note it.\n\nOnce they confirm, say: \"Thank you for sharing these details. Based on this preliminary assessment, you appear to be eligible for our Loan Against Property offer of up to 75 lakh rupees. This is not a final approval - our senior loan expert will review your documentation and guide you on the loan amount, interest rate and other terms.\"\n\nThen say you'll pass their information to the senior loan expert, who will contact them within 24 to 48 hours to discuss next steps and documents, and ask if there is anything else to note for them. Then wrap up the call.",
+          "type": "prompt"
+        },
+        "display_position": {
+          "y": 30,
+          "x": 1590
+        },
+        "id": "confirm_and_qualify",
+        "skippable": false,
+        "name": "Confirm and Qualify"
+      },
+      {
+        "instruction": {
+          "type": "prompt",
+          "text": "Ask when would be a good time for a callback and which number to use. Read the number and the date and time back to confirm. Then say they will receive a call from the senior loan expert to discuss next steps, and wrap up the call."
+        },
+        "skippable": false,
+        "type": "subagent",
+        "name": "Schedule Callback",
+        "id": "schedule_callback",
+        "display_position": {
+          "x": 900,
+          "y": 600
+        }
+      },
+      {
+        "skippable": false,
+        "id": "disqualification",
+        "type": "conversation",
+        "instruction": {
+          "text": "Politely explain the specific reason they can't proceed right now, based on what they shared. Say our senior loan expert can better guide them on it, and offer to arrange a callback (for example, once they have the original documents).",
+          "type": "prompt"
+        },
+        "name": "Polite Disqualification",
+        "edges": [
+          {
+            "destination_node_id": "schedule_callback",
+            "transition_condition": {
+              "prompt": "The caller wants a callback",
+              "type": "prompt"
+            },
+            "id": "edge_disq_callback"
+          }
+        ],
+        "display_position": {
+          "x": 1350,
+          "y": 600
+        }
+      },
+      {
+        "type": "subagent",
+        "name": "Upset or Wants Human",
+        "id": "upset_or_human",
+        "global_node_setting": {
+          "cool_down": 3,
+          "condition": "The caller is upset or asks to speak to a human or senior person and does not want to continue with the questions"
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "Acknowledge the caller's concern with empathy. You can't transfer calls, so offer to arrange a callback from a senior loan expert."
+        },
+        "edges": [
+          {
+            "destination_node_id": "schedule_callback",
+            "transition_condition": {
+              "prompt": "The caller accepts a callback",
+              "type": "prompt"
+            },
+            "id": "edge_upset_callback"
+          }
+        ],
+        "skippable": false,
+        "display_position": {
+          "x": -450,
+          "y": 0
+        }
+      },
+      {
+        "id": "end_call",
+        "instruction": {
+          "text": "Thank the caller for their time and say goodbye.",
+          "type": "prompt"
+        },
+        "global_node_setting": {
+          "condition": "The caller has nothing else they need or wants to end the call"
+        },
+        "skippable": false,
+        "name": "End Call",
+        "display_position": {
+          "x": -450,
+          "y": 600
+        },
+        "type": "end"
+      }
+    ],
+    "start_node_id": "greeting",
+    "start_speaker": "agent",
+    "model_choice": {
+      "model": "claude-5-sonnet",
+      "high_priority": false,
+      "type": "cascading"
+    },
+    "knowledge_base_ids": [],
+    "begin_tag_display_position": {
+      "y": 0,
+      "x": 0
+    },
+    "is_published": true,
+    "flex_mode": true
+  }
+}

@@ -1,0 +1,279 @@
+===============================================================================
+HOME CREDIT LAP VOICE AGENT - PROJECT INFORMATION
+===============================================================================
+
+PROJECT NAME
+------------
+Home Credit Loan Against Property (LAP) Qualification Voice Agent
+
+PLATFORM
+--------
+Retell AI (https://www.retellai.com/)
+
+PURPOSE
+-------
+Automated voice agent for conducting preliminary qualification assessments
+for Home Credit's Loan Against Property product (up to ₹75 lakh).
+
+===============================================================================
+QUICK LINKS
+===============================================================================
+
+🎙️ PUBLIC DEMO (Try Now):
+https://agent.retellai.com/orb/agent_1cd6d1d0c3693d8b4b8d3cdf7d?token=dfd704750d4b7c94e96e79a662ead283
+
+📚 Retell Dashboard:
+https://dashboard.retellai.com/
+
+📖 Retell Documentation:
+https://docs.retellai.com/
+
+===============================================================================
+PROJECT STRUCTURE
+===============================================================================
+
+ROOT DIRECTORY
+--------------
+README.txt                    - Main documentation (START HERE)
+QUICK-START.txt               - 15-minute deployment guide
+PROJECT-INFO.txt              - This file
+.gitignore                    - Git ignore rules
+
+config/                       - Configuration Files
+-------
+├── agent-prompt.txt          - Main AI prompt (copy to Retell)
+├── retell-config.json        - Complete Retell configuration
+└── retell-export-v0.json     - Exported agent configuration
+
+docs/                         - Documentation
+-----
+└── test-scenarios.txt        - 25 comprehensive test scenarios
+
+===============================================================================
+KEY FEATURES
+===============================================================================
+
+✅ Handles 8 qualification data points
+✅ Professional English conversation
+✅ Edge case handling (busy customers, amount limits, existing loans)
+✅ Compliance-safe (no promises, proper disclaimers)
+✅ Post-call analytics and data extraction
+✅ Fully tested with 25 scenarios
+
+===============================================================================
+USAGE WORKFLOW
+===============================================================================
+
+1. READ: Start with README.txt for complete overview
+
+2. TEST: Try the public demo link above
+   - No setup required
+   - Test different scenarios
+   - Experience the agent firsthand
+
+3. DEPLOY: Follow QUICK-START.txt to deploy your own
+   - Takes 15 minutes
+   - Free $10 trial credit included
+   - Full customization available
+
+4. CUSTOMIZE: Modify config/agent-prompt.txt
+   - Adjust tone and personality
+   - Add/remove qualification criteria
+   - Configure for your use case
+
+5. VALIDATE: Test with docs/test-scenarios.txt
+   - 25 comprehensive scenarios
+   - Cover all edge cases
+   - Ensure production readiness
+
+===============================================================================
+TECHNICAL SPECIFICATIONS
+===============================================================================
+
+AI Model: Claude 3.5 Sonnet (recommended) or GPT-4
+Voice: Retell-Cimo with Eleven Labs Flash v2
+Language: English (en-US)
+Vocab Specialization: Finance
+Response Mode: Streaming (low latency)
+Interruption Handling: Dynamic with backchannel
+Call Duration: Up to 15 minutes
+Silence Timeout: 5 minutes
+
+===============================================================================
+DATA COLLECTED
+===============================================================================
+
+1. Property Type (Residential/Commercial)
+2. Property Ownership (Self-owned/Co-owned)
+3. Original Documents Availability (Yes/No) - DISQUALIFIER
+4. Requested Loan Amount (Up to ₹75 lakh)
+5. Occupation (Salaried/Self-employed/Business owner)
+6. Income Receipt Method (Bank/Cash/Cheque/Mixed)
+7. Approximate Market Value
+8. Preferred Repayment Tenure (1-15 years)
+
+===============================================================================
+COMPLIANCE & SAFETY
+===============================================================================
+
+The agent is designed for PRELIMINARY QUALIFICATION ONLY.
+
+NEVER does:
+❌ Promise final loan approval
+❌ Quote specific interest rates
+❌ Guarantee disbursement amounts or timelines
+❌ Make assumptions about unclear answers
+
+ALWAYS does:
+✅ Set clear expectations
+✅ Hand off to human experts for final decisions
+✅ Clarify ambiguous responses
+✅ Provide excellent customer experience
+
+===============================================================================
+COST ESTIMATE
+===============================================================================
+
+Retell AI Credits: $0.07 - $0.12 per minute
+Phone Number (optional): $2.00 per month
+Free Trial: $10 credit (~100 minutes)
+
+Typical 5-minute call: $0.35 - $0.60
+
+===============================================================================
+DEPLOYMENT OPTIONS
+===============================================================================
+
+OPTION 1: NO-CODE (Recommended)
+- Use Retell Dashboard
+- Copy/paste configuration
+- Deploy in 15 minutes
+- See QUICK-START.txt
+
+OPTION 2: PROGRAMMATIC
+- Use Retell API/SDK
+- Integrate with your systems
+- See config/retell-config.json for parameters
+- Full automation possible
+
+OPTION 3: TRY FIRST
+- Use public demo link
+- No setup required
+- Test immediately
+- Then decide on deployment
+
+===============================================================================
+SUPPORT
+===============================================================================
+
+Documentation: See README.txt
+Quick Start: See QUICK-START.txt
+Test Cases: See docs/test-scenarios.txt
+
+Retell Support: support@retellai.com
+Retell Docs: https://docs.retellai.com/
+Retell Community: Discord server available
+
+===============================================================================
+VERSION INFORMATION
+===============================================================================
+
+Version: 1.0
+Release Date: October 2026
+Status: Production Ready
+Last Updated: October 9, 2026
+
+Features in v1.0:
+- Complete qualification flow
+- 8 data points collection
+- 25 test scenarios
+- Edge case handling
+- Post-call analytics
+- Compliance guardrails
+
+===============================================================================
+CUSTOMIZATION GUIDE
+===============================================================================
+
+TO MODIFY THE AGENT:
+
+1. Edit config/agent-prompt.txt
+   - Change conversation flow
+   - Adjust qualification criteria
+   - Modify tone and personality
+
+2. Edit config/retell-config.json
+   - Change voice settings
+   - Adjust timing parameters
+   - Configure post-call analytics
+
+3. Test with docs/test-scenarios.txt
+   - Verify all scenarios still work
+   - Add new test cases as needed
+
+4. Deploy updated version
+   - Use Retell dashboard to update
+   - Or use API to push changes
+   - Monitor first few calls closely
+
+===============================================================================
+BEST PRACTICES
+===============================================================================
+
+BEFORE PRODUCTION:
+- Test all 25 scenarios in docs/test-scenarios.txt
+- Review call recordings
+- Verify post-call data extraction
+- Train staff on handoff process
+
+DURING OPERATION:
+- Monitor call quality regularly
+- Review customer feedback
+- Update prompt based on real conversations
+- Track qualification to conversion rates
+
+FOR OPTIMIZATION:
+- Adjust interruption sensitivity based on user feedback
+- Fine-tune voice speed and temperature
+- Add boosted keywords for common terms
+- Refine edge case handling
+
+===============================================================================
+LICENSE & USAGE
+===============================================================================
+
+This configuration is provided for use with Home Credit LAP qualification.
+Modify as needed for your specific requirements.
+
+All Retell AI services are subject to Retell's terms of service.
+See https://www.retellai.com/terms for details.
+
+===============================================================================
+GETTING STARTED
+===============================================================================
+
+FIRST TIME USERS:
+
+Step 1: Read README.txt (5 minutes)
+Step 2: Try public demo link (2 minutes)
+Step 3: Follow QUICK-START.txt (15 minutes)
+Step 4: Test with docs/test-scenarios.txt (30 minutes)
+Step 5: Deploy to production (ongoing)
+
+Total time to first deployment: ~1 hour
+
+===============================================================================
+CONTACT & FEEDBACK
+===============================================================================
+
+For questions, issues, or feedback about this configuration:
+- Review documentation files first
+- Check Retell AI documentation
+- Contact Retell support for platform issues
+
+For Home Credit specific requirements:
+- Modify configuration files as needed
+- Test thoroughly before production
+- Monitor and iterate based on performance
+
+===============================================================================
